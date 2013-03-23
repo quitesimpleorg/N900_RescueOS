@@ -1,0 +1,4 @@
+::sysinit:/etc/init.d/rcS
+tty1::respawn:-/bin/bash
+ttyS0::respawn:-/bin/bash
+::shutdown:/bin/sh /rescueOS/shutdown-cleanup 

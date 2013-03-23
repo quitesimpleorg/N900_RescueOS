@@ -1,0 +1,128 @@
+Documentation of RescueOS
+=========================
+RescueOS is a rescue solution for the Nokia N900, distributed
+as an initrd image. It has several features, most
+notable:
+
+mounting maemo /
+EMMC access(can mount maemo home and MyDocs partition)
+WiFi support
+USB mass-storage mode
+USB networking
+Battery charging
+
+Users must be familiar with the Linux console.
+
+This project is _NOT_ the meego rescue initrd.
+
+
+Update: I don't provide a tarball anymore. 
+
+How does it work?
+~~~~~~~~~~~~~~~~~
+The flasher utility loads rescueOS. This makes it unnecessary 
+to modify the bootloader or maemo's /sbin/preinit. 
+
+By using the "-l" option, we do not flash the kernel or initrd image.
+It only loads the kernel into RAM. No modification on
+the NAND or bootloader happens.
+
+
+
+Usecases
+~~~~~~~~
+In fact, most users do not need it. Either way, possible usecases:
+
+-Changing typos in bootscripts which prevent an operation system
+(e.g. maemo) to boot.
+
+-Backuping files prior to a reflash.
+
+-Charging the battery (when maemo is dead).
+
+-Modification of the EMMC partitions and partition table.
+
+-Backup & Restoring maemo rootfs.
+
+-fsck file system checks
+
+-and more...
+
+Booting the initrd
+~~~~~~~~~~~~~~~
+You can not store persistent data, e.g. WiFi firmwares from maemo 
+as everything happens in RAM. 
+
+flasher-3.5 -k 2.6.37 -n initrd.img -l -b"rootdelay root=/dev/ram0
+
+wait for "suitable device not found..." and connect the N900 to your 
+Linux box through USB.
+
+
+~~~~~~~~~~~~~~~
+How to use it
+~~~~~~~~~~~~~~~
+It boots and you get a bash shell.
+
+The folder /rescueOS/ contains some scripts for various tasks. Not all of them 
+are completed yet. They help you with the usual stuff, e.g. mass-storage
+mode, maemo root mounting, usbnetworking, WiFi setup etc.
+
+Mounting maemo root
+-------------------
+/rescueOS/mount-maemo-root.sh
+This scripts mounts the maemo root to /mnt/maemo. 
+
+/rescueOS/umount-maemo-root.sh
+
+USB Networking
+-------------
+/rescueOS/usbnetworking-enable.sh
+Sets up USB networking in the following way:
+ifconfig usb0 192.168.2.15 up
+ifconfig usb0 netmask 255.255.255.0
+route add 192.168.2.14 usb0
+
+To disable it: /rescueOS/usbnetworking-disable.sh
+
+USB Mass-Storage mode
+--------------------
+/rescueOS/mass-storage-enable.sh
+Makes /dev/mmcblk1p1 and /dev/mmcblk1p2 available for the mass-storage
+mode. These are the EMMC home partition and MyDocs in maemo.  
+
+/rescueOS/mass-storage-disable.sh: Deactivates mass-storage mode.
+
+
+WiFi support
+------------
+It has wpa_supplicant, but without EAP support. This should be ok for
+most home networks which use a PSK.
+
+Give the following a try:
+
+wpa_passphrase [essid] [password] > /wlan.conf
+sh /rescueOS/setup-wpa-wifi.sh
+
+For DHCP, use udhcpc -i wlan0.
+
+You need the firmware files of course: /rescueOS/firmware-from-maemo.sh
+
+Battery charging
+----------------
+By using ShadowJK's charge21 script. Use it only with the wallcharger,
+as it pulls 950 mA, and USB is not designed for that 
+(some ports can do it though, don't try if in doubt.)
+ 
+/rescueOS/charge21.bash
+
+Shutdown
+--------
+poweroff 
+
+Root password
+-------------
+rootme
+
+
+Contributions and suggestions are welcome. Write to me (NIN101 on freenode).

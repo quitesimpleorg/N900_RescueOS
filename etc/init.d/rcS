@@ -1,0 +1,74 @@
+#!/bin/sh
+EMULATOR=0
+mount -t sysfs none /sys
+mount -n -t proc none /proc
+echo 200 > /sys/class/backlight/acx565akm/brightness
+mount -t tmpfs -o size=64k,mode=0755 tmpfs /dev
+mkdir /dev/pts
+mount -t devpts devpts /dev/pts
+mount -t tmpfs -o rw,noexec,nosuid,mode=0755 tmpfs /run
+mount -t tmpfs -o rw,mode=0755 tmpfs /root/
+mount -t tmpfs -o rw,nosuid,nodev tmpfs /tmp/
+echo /sbin/mdev.sh > /proc/sys/kernel/hotplug
+mdev -s
+find /sys/devices/* -name modalias | while read module ; do
+modprobe `cat $module` 2> /dev/null
+done
+hwclock -s 
+hostname -F /etc/hostname
+
+
+modprobe leds-lp5523
+
+
+/sbin/battery-watchdog &
+#/rescueOS/charge21.bash > /run/batterylog &
+clear
+echo "Disclaimer: This system comes without any warranty. Use it at your own risk."
+sleep 3
+clear
+echo "Welcome to N900 Rescue Initrd 1.0" 
+echo
+
+/sbin/loadkmap < /rescueOS/nokia-n900.kmap
+
+for i in 2 3 7 8 ; do
+    echo 25 > /sys/class/leds/lp5523\:channel$i/brightness
+done
+ 
+autostart_script=`grep -q autostart /proc/cmdline && cat /proc/cmdline | sed -e 's/.*autostart=\(.*\)/\1/'`
+if [ -n "$autostart_script" ] ; then
+echo "Running $autostart_script" 
+$autostart_script 
+fi
+
+touch /run/resolv.conf
+
+echo "The root password is: rootme" 
+
+
+echo "Start an FTP server with anonymous up and downloads everywhere? y/n"
+read result;
+if [ "$result" = "y" ] ; then
+tcpsvd -v 0.0.0.0 21 ftpd -w & 
+fi
+
+echo "Start telnetd? y/n"
+read result;
+
+if [ "$result" = "y" ] ; then
+telnetd 
+fi
+
+echo "Start usb-networking? y/n"
+read result;
+
+if [ "$result" = "y" ] ; then
+/rescueOS/usbnetworking-enable.sh
+fi
+
+if [ "$EMULATOR" = "1" ] ; then
+udhcpc eth0
+fi
+#We are done.
+
