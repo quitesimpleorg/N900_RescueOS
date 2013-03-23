@@ -7,6 +7,8 @@
 -shipping wifi firmware
 -corrected dhcp business with /etc/resolv.conf
 -decreased size of the initrd
+RescueOS's own configs and scripts are now hosted here:
+https://github.com/NIN101/N900_RescueOS 
 
 ====
 
