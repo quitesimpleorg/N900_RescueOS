@@ -1,0 +1,1 @@
+flasher-3.5 -k zImage -n initrd.img -l -b"rootdelay root=/dev/ram0"

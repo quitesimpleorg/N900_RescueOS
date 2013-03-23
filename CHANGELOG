@@ -1,0 +1,82 @@
+1.0 2013-03-23
+==============
+-Using buildroot now to create the rootfs.
+-updated userspace tools(e. g. busybox).
+-glibc replaced with uclibc and everything recompiled against uclibc
+-/rescueOS/usb-mass-storage-enable.sh: Work if sd card is inserted or not(known mmcblkX number issue on N900)
+-shipping wifi firmware
+-corrected dhcp business with /etc/resolv.conf
+-decreased size of the initrd
+
+====
+
+0.5.4 2013-01-05 
+Nothing special but useful changes:
+-midnight commander removed as it was eating too much space and I doubt people were actually using it.
+-Now after bootup, the system asks the user whether he wants to enable anonymous ftp up and downloads everywhere.
+Then whether telnetd should be started and finally asks whether usb networking should be enabled.
+=================================
+0.5.3
+Short note: it disappeared from the server (some problems with my hoster).
+Development is pretty much stalled. I am focusing on other things.
+Contributions otoh are still welcome.
+
+
+-Including Pali's script which should fix some messed up maemo /dev/ device nodes (iirc, this can happen with uboot fun)
+
+
+0.5 2012-03-03, version 0.5.2
+Boring and nothing exciting:
+* tar is now gnu tar, not busybox's version for convenience
+* /tmp/ for some reason never existed, now it does :S
+* Mountpoints /mnt/free1, /mnt/free2, /mnt/free3 (how noteworthy!) 
+* PS1 was set to show the current directory you are in.
+
+
+0.5 2012-01-22, version 0.5.1
+* Battery capacity watchdog tells user at 45 % capacity to charge the 
+  battery. Type "stfu" if the messages annoy you.
+
+0.5 2011-11-02, version 0.5
+* Updated busybox to 1.19.3
+* User can append autostart=/path... option in the kernel 
+* command line to run a script right after bootup. 
+* tcpsvd included for ftpd. For example, "tcpsvd -v 0.0.0.0 21 
+  ftpd -w" enables anonymous down- and uploads everywhere. 
+* By Request: Midnight Commander 4.8 included. As functions 
+  keys are not available/mapped, use ESC+number. Still borked. 
+* cleaner shutdown.
+
+
+0.4 2011-09-02:
+* e2fsprogs
+* dosfstools
+* Now also available as an initrd image.
+
+
+0.3 2011-08-26:
+* Battery charging support. (via ShadowJK's h
+  http://enivax.net/jk/n900/">meegocharge script</a>)
+
+0.2 2011-08-21:
+* Decreased rootfs size by a factor of 10
+* First poor-man script to create an archive of the maemo rootfs.¹)
+* Takes the WiFi-Firmwares on first boot from maemo root if wished by 
+  the user.¹
+* Bug which caused the wlan interface number to increase on every reboot 
+  fixed. 
+* bash and job control
+* Typo in /rescueOS/umount-maemo-root.sh fixed 
+
+0.1 2011-07-31:
+* First release 
+* WiFi Support
+* ubifs mounting support (maemo root for example)
+* USB networking
+* USB mass-storage mode
+* EMMC mounting
+
+
+
+¹ tarball release only, which isn't available anymore. 
+
