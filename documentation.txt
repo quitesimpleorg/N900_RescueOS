@@ -15,18 +15,14 @@ Users must be familiar with the Linux console.
 
 This project is _NOT_ the meego rescue initrd.
 
-
-Update: I don't provide a tarball anymore. 
-
 How does it work?
 ~~~~~~~~~~~~~~~~~
 The flasher utility loads rescueOS. This makes it unnecessary 
-to modify the bootloader or maemo's /sbin/preinit. 
+to modify the bootloader or maemo's /sbin/preinit like other solutions do. 
 
 By using the "-l" option, we do not flash the kernel or initrd image.
 It only loads the kernel into RAM. No modification on
 the NAND or bootloader happens.
-
 
 
 Usecases
@@ -50,8 +46,7 @@ In fact, most users do not need it. Either way, possible usecases:
 
 Booting the initrd
 ~~~~~~~~~~~~~~~
-You can not store persistent data, e.g. WiFi firmwares from maemo 
-as everything happens in RAM. 
+You can not store persistent data as everything happens in RAM. 
 
 flasher-3.5 -k 2.6.37 -n initrd.img -l -b"rootdelay root=/dev/ram0
 
@@ -88,11 +83,10 @@ To disable it: /rescueOS/usbnetworking-disable.sh
 USB Mass-Storage mode
 --------------------
 /rescueOS/mass-storage-enable.sh
-Makes /dev/mmcblk1p1 and /dev/mmcblk1p2 available for the mass-storage
-mode. These are the EMMC home partition and MyDocs in maemo.  
+Makes the first 2 EMMC partitions available for the mass-storage
+mode. Known as /home/ and /home/user/MyDocs inside maemo.  
 
 /rescueOS/mass-storage-disable.sh: Deactivates mass-storage mode.
-
 
 WiFi support
 ------------
@@ -101,12 +95,12 @@ most home networks which use a PSK.
 
 Give the following a try:
 
-wpa_passphrase [essid] [password] > /wlan.conf
+wpa_passphrase [essid] [password] > /run/wlan.conf
 sh /rescueOS/setup-wpa-wifi.sh
 
-For DHCP, use udhcpc -i wlan0.
+For DHCP:
 
-You need the firmware files of course: /rescueOS/firmware-from-maemo.sh
+udhcpc -i wlan0.
 
 Battery charging
 ----------------
