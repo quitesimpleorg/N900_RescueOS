@@ -7,5 +7,5 @@ exit;
 
 sync
 umount /mnt/maemo || ermsg 
-ubidetach -m 5
+ubidetach /dev/ubi_ctrl -d 0
 rm /run/maemo-root-mounted
