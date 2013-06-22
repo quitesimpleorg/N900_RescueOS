@@ -25,20 +25,21 @@ It only loads the kernel into RAM. No modification on
 the NAND or bootloader happens.
 
 
-Usecases
+Use cases
 ~~~~~~~~
-In fact, most users do not need it. Either way, possible usecases:
+In fact, most users do not need it. Either way, possible use cases:
 
 -Changing typos in bootscripts which prevent an operation system
-(e.g. maemo) to boot.
+(e.g. maemo) to boot. 
 
--Backuping files prior to a reflash.
+-Creating a backup of files before starting a reflash. But should have existed
+anyway, correct? 
 
 -Charging the battery (when maemo is dead).
 
 -Modification of the EMMC partitions and partition table.
 
--Backup & Restoring maemo rootfs.
+-Backing up & Restoring maemo rootfs.
 
 -fsck file system checks
 
@@ -46,9 +47,14 @@ In fact, most users do not need it. Either way, possible usecases:
 
 Booting the initrd
 ~~~~~~~~~~~~~~~
-You can not store persistent data as everything happens in RAM. 
+Note: You can not store persistent data in / as everything happens in RAM. Of
+course, it becomes possible when you mount the EMMC or sd card on the
+corresponding mountpoint.  
 
-flasher-3.5 -k 2.6.37 -n initrd.img -l -b"rootdelay root=/dev/ram0
+Note: It comes without any promises and without any warranty. Therefore you
+are doing everything at your own risk. 
+
+flasher-3.5 -k 2.6.37 -n initrd.img -l -b"rootdelay root=/dev/ram0"
 
 wait for "suitable device not found..." and connect the N900 to your 
 Linux box through USB.
@@ -118,5 +124,15 @@ Root password
 -------------
 rootme
 
+How to transfer files
+=====================
+It asks you on boot whether an FTP Server should be started. 
+This will have anonymous up and download permissions everywhere.
+Then you can connect to it once USB networking or a WLAN connection 
+has been established, using any FTP client. For downloads, most browsers
+can be used. 
 
-Contributions and suggestions are welcome. Write to me (NIN101 on freenode).
+Alternatively, use mass-storage mode.
+
+Contributions and suggestions are welcome. Write to me (NIN101 on freenode or
+TMO).
