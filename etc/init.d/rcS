@@ -1,5 +1,6 @@
 #!/bin/sh
 EMULATOR=0
+VERSION="1.1"
 mount -t sysfs none /sys
 mount -n -t proc none /proc
 echo 200 > /sys/class/backlight/acx565akm/brightness
@@ -27,7 +28,7 @@ clear
 echo "Disclaimer: This system comes without any warranty. Use it at your own risk."
 sleep 3
 clear
-echo "Welcome to N900 Rescue Initrd 1.0" 
+echo "Welcome to N900 Rescue Initrd $VERSION" 
 echo
 
 /sbin/loadkmap < /rescueOS/nokia-n900.kmap
@@ -46,7 +47,7 @@ touch /run/resolv.conf
 
 echo "The root password is: rootme" 
 
-
+#Being helpful for beginners, and annoying for "power users"
 echo "Start an FTP server with anonymous up and downloads everywhere? y/n"
 read result;
 if [ "$result" = "y" ] ; then
@@ -66,6 +67,15 @@ read result;
 if [ "$result" = "y" ] ; then
 /rescueOS/usbnetworking-enable.sh
 fi
+
+#node mess 
+if [ -e /sys/block/mmcblk0 ] && [ -e /sys/block/mmcblk1 ] ; then 
+		echo -n "1" > /run/internal_nodenr
+else
+		echo -n "0" > /run/internal_nodenr
+fi
+
+
 
 if [ "$EMULATOR" = "1" ] ; then
 udhcpc eth0
