@@ -1,5 +1,9 @@
-1.1 2013-...
+1.1 2013-06-30
+==============
 FIX	Correclty detach ubifs (thx, Pali)
+FIX	/usr/share/terminfo was missing 
+FIX 	Detect device node number of internal emmc on boot, not in mass-storage-enable.sh
+NEW	/rescueOS/enabletelnet.sh /rescueOS/enableftp.sh - To enable telnet or ftp manually 
 
 
 1.0 2013-03-23
