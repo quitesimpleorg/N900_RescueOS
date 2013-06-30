@@ -2,7 +2,7 @@ umount_maemo()
 {
 sync
 umount /mnt/maemo
-ubidetach -m 5
+ubidetach /dev/ubi_ctrl -d 0
 }
 cd /
 
@@ -27,7 +27,7 @@ sync
 
 #reset timer.
 sleep 3 
-i2cset -y -m 0x80 2 0x6b 0x04 0x80
+[ -f /run/charger-runned ] && i2cset -y -m 0x80 2 0x6b 0x04 0x80
 sleep 1
 echo 
 echo "RescueOS says good bye - have a good day."
