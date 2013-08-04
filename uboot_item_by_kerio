@@ -1,0 +1,5 @@
+ITEM_NAME="RescueOS"
+ITEM_KERNEL="2.6.37"
+ITEM_INITRD="rescueOS-1.1.img"
+ITEM_CMDLINE="rootdelay root=/dev/ram0"
+ITEM_OMAPATAG="1"
