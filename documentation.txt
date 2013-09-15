@@ -15,6 +15,7 @@ Users must be familiar with the Linux console.
 
 This project is _NOT_ the meego rescue initrd.
 
+
 How does it work?
 ~~~~~~~~~~~~~~~~~
 The flasher utility loads rescueOS. This makes it unnecessary 
@@ -134,5 +135,4 @@ can be used.
 
 Alternatively, use mass-storage mode.
 
-Contributions and suggestions are welcome. Write to me (NIN101 on freenode or
-TMO).
+Contributions and suggestions are welcome. Write to me (NIN101 on freenode or TMO. E-Mail: n900-rescueos at quitesimple period org).
