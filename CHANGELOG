@@ -5,49 +5,46 @@ FIX	/usr/share/terminfo was missing
 FIX 	Detect device node number of internal emmc on boot, not in mass-storage-enable.sh
 NEW	/rescueOS/enabletelnet.sh /rescueOS/enableftp.sh - To enable telnet or ftp manually 
 
-
 1.0 2013-03-23
 ==============
 NEW	Using buildroot now to create the rootfs.
 NEW	updated userspace tools(e. g. busybox).
 NEW	glibc replaced with uclibc and everything recompiled against uclibc
-FIX	/rescueOS/usb-mass-storage-enable.sh: Work if sd card is inserted or not(known mmcblkX number issue on N900)
 NEW	shipping wifi firmware
 FIX	corrected dhcp business with /etc/resolv.conf
+FIX	/rescueOS/usb-mass-storage-enable.sh: Work if sd card is inserted or not(known mmcblkX number issue on N900)
 INFO	decreased size of the initrd
 INFO	RescueOS's own configs and scripts are now hosted here:
 	https://github.com/NIN101/N900_RescueOS 
 
-====
-
 0.5.4 2013-01-05 
-Nothing special but useful changes:
+================
 REMOVED midnight commander removed as it was eating too much space and I doubt people were actually using it.
 NEW	Now after bootup, the system asks the user whether he wants to enable anonymous ftp up and downloads everywhere.
 	Then whether telnetd should be started and finally asks whether usb networking should be enabled.
-=================================
+
 0.5.3
+=====
 INFO	it disappeared from the server (some problems with my hoster).
 	Development is pretty much stalled. I am focusing on other things.
 	Contributions otoh are still welcome.
-
-
 NEW	Including Pali's script which should fix some messed up maemo /dev/ device nodes (iirc, this can happen with uboot fun)
 
-
-0.5 2012-03-03, version 0.5.2
+0.5.2 2012-03-03
+================
 Boring and nothing exciting:
 NEW	tar is now gnu tar, not busybox's version for convenience
 NEW	/tmp/ for some reason never existed, now it does :S
 NEW	Mountpoints /mnt/free1, /mnt/free2, /mnt/free3 (how noteworthy!) 
 NEW	PS1 was set to show the current directory you are in.
 
-
-0.5 2012-01-22, version 0.5.1
+0.5.1 2012-01-22
+================
 NEW	Battery capacity watchdog tells user at 45 % capacity to charge the 
   	battery. Type "stfu" if the messages annoy you.
 
-0.5 2011-11-02, version 0.5
+0.5 2011-11-02
+==============
 NEW 	Updated busybox to 1.19.3
 NEW 	User can append autostart=/path... option in the kernel 
 	command line to run a script right after bootup. 
@@ -57,28 +54,30 @@ NEW 	By Request: Midnight Commander 4.8 included. As functions
   	keys are not available/mapped, use ESC+number. Still borked. 
 NEW cleaner shutdown.
 
-
-0.4 2011-09-02:
+0.4 2011-09-02
+==============
 NEW	e2fsprogs
 NEW	dosfstools
 NEW	Now also available as an initrd image.
 
-
-0.3 2011-08-26:
+0.3 2011-08-26
+==============
 NEW 	Battery charging support. (via ShadowJK's h
   	http://enivax.net/jk/n900/">meegocharge script</a>)
 
-0.2 2011-08-21:
+0.2 2011-08-21
+==============
 INFO 	Decreased rootfs size by a factor of 10
 NEW 	First poor-man script to create an archive of the maemo rootfs.¹)
 NEW 	Takes the WiFi-Firmwares on first boot from maemo root if wished by 
   	the user.¹
-FIX 	Bug which caused the wlan interface number to increase on every reboot 
   	fixed. 
 NEW 	bash and job control
 FIX 	Typo in /rescueOS/umount-maemo-root.sh fixed 
+FIX 	Bug which caused the wlan interface number to increase on every reboot is gone.
 
-0.1 2011-07-31:
+0.1 2011-07-31
+==============
 NEW 	First release 
 NEW 	WiFi Support
 NEW 	ubifs mounting support (maemo root for example)
