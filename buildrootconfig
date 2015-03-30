@@ -39,6 +39,7 @@ BR2_TARGET_ROOTFS_CRAMFS=y
 BR2_LINUX_KERNEL=y
 BR2_LINUX_KERNEL_CUSTOM_TARBALL=y
 BR2_LINUX_KERNEL_CUSTOM_TARBALL_LOCATION="http://n900.quitesimple.org/rescueOS/sourcecode/kernel_source.tar.gz"
+BR2_LINUX_KERNEL_PATCH="../N900_RescueOS/kernel-patches/0001-net-wireless-wl1251-update-firmware-path.patch"
 BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
 BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="../N900_RescueOS/kernel_config"
 BR2_LINUX_KERNEL_ZIMAGE=y
