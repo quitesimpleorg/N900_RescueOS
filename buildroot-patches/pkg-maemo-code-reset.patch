@@ -1,0 +1,51 @@
+Index: buildroot-2013.02/package/Config.in
+===================================================================
+--- buildroot-2013.02.orig/package/Config.in	2015-03-31 16:47:43.000000000 -0400
++++ buildroot-2013.02/package/Config.in	2015-03-31 16:48:41.000000000 -0400
+@@ -250,6 +250,7 @@
+ source "package/lshw/Config.in"
+ source "package/lsuio/Config.in"
+ source "package/lvm2/Config.in"
++source "package/maemo-code-reset/Config.in"
+ source "package/mdadm/Config.in"
+ source "package/media-ctl/Config.in"
+ source "package/memtester/Config.in"
+Index: buildroot-2013.02/package/maemo-code-reset/Config.in
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ buildroot-2013.02/package/maemo-code-reset/Config.in	2015-03-31 16:47:43.000000000 -0400
+@@ -0,0 +1,11 @@
++config BR2_PACKAGE_MAEMO_CODE_RESET
++	bool "maemo-code-reset"
++	select BR2_PACKAGE_MAEMO_LIBCAL
++	help
++	  Reset the lock code of a Nokia N900.
++
++	  Derived from the Mameo code-reset package
++	  (<http://maemo.org/packages/view/code-reset/>)
++
++	  (This is a RescueOS-specific package inserted by patching; see
++	   N900_RescueOS/buildroot-patches/pkg-maemo-code-reset.patch)
+Index: buildroot-2013.02/package/maemo-code-reset/maemo-code-reset.mk
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ buildroot-2013.02/package/maemo-code-reset/maemo-code-reset.mk	2015-03-31 16:47:43.000000000 -0400
+@@ -0,0 +1,18 @@
++#
++# maemo-code-reset
++#
++
++MAEMO_CODE_RESET_VERSION = 0.1
++MAEMO_CODE_RESET_SOURCE = code-reset_$(MAEMO_CODE_RESET_VERSION).tar.gz
++MAEMO_CODE_RESET_SITE = http://repository.maemo.org/extras-devel/pool/fremantle/free/source/c/code-reset/
++MAEMO_CODE_RESET_DEPENDENCIES = maemo-libcal
++
++define MAEMO_CODE_RESET_BUILD_CMDS
++	$(TARGET_CC) -lcrypt -lcal $(@D)/code_reset.c -o $(@D)/code_reset
++endef
++
++define MAEMO_CODE_RESET_INSTALL_TARGET_CMDS
++	$(INSTALL) -D -m 0755 $(@D)/code_reset $(TARGET_DIR)/usr/sbin
++endef
++
++$(eval $(generic-package))

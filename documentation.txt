@@ -6,6 +6,7 @@ notable:
 
 mounting maemo /
 EMMC access(can mount maemo home and MyDocs partition)
+Lock code reset
 WiFi support
 USB mass-storage mode
 USB networking
@@ -44,6 +45,8 @@ anyway, correct?
 
 -fsck file system checks
 
+-Resetting the lock code (without reflashing)
+
 -and more...
 
 Booting the initrd
@@ -76,6 +79,11 @@ Mounting maemo root
 This scripts mounts the maemo root to /mnt/maemo. 
 
 /rescueOS/umount-maemo-root.sh
+
+Lock code reset
+---------------
+code_reset
+# This will set the lock code back to the default ('12345').
 
 USB Networking
 -------------
