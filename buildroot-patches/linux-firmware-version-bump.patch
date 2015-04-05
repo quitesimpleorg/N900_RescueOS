@@ -1,0 +1,13 @@
+Index: buildroot-2013.02/package/linux-firmware/linux-firmware.mk
+===================================================================
+--- buildroot-2013.02.orig/package/linux-firmware/linux-firmware.mk	2015-03-29 19:37:39.000000000 -0400
++++ buildroot-2013.02/package/linux-firmware/linux-firmware.mk	2015-03-29 19:40:20.000000000 -0400
+@@ -4,7 +4,7 @@
+ #
+ #############################################################
+ 
+-LINUX_FIRMWARE_VERSION = 65a5163b8bb77bd7759efa3ca780867fcaed89b0
++LINUX_FIRMWARE_VERSION = 76b366df2afdde9811fdd5fc128d1779e26e7be7
+ LINUX_FIRMWARE_SITE = http://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
+ LINUX_FIRMWARE_SITE_METHOD = git
+ 

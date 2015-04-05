@@ -33,14 +33,12 @@ case "$1" in
 			done
 		fi
 
-		echo "Recreating $RESOLV_CONF"
-		echo -n > $RESOLV_CONF-$$
-		[ -n "$domain" ] && echo "search $domain" >> $RESOLV_CONF-$$
+		echo "Setting $RESOLV_CONF"
+		[ -n "$domain" ] && echo "search $domain" >> $RESOLV_CONF
 		for i in $dns ; do
 			echo " Adding DNS server $i"
-			echo "nameserver $i" >> $RESOLV_CONF-$$
+			echo "nameserver $i" >> $RESOLV_CONF
 		done
-		mv $RESOLV_CONF-$$ $RESOLV_CONF
 		;;
 esac
 

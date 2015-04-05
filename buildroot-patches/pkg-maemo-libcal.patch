@@ -1,0 +1,77 @@
+Index: buildroot-2013.02/package/Config.in
+===================================================================
+--- buildroot-2013.02.orig/package/Config.in	2015-03-31 16:22:39.000000000 -0400
++++ buildroot-2013.02/package/Config.in	2015-03-31 17:12:47.000000000 -0400
+@@ -457,6 +457,7 @@
+ source "package/libusb/Config.in"
+ source "package/libusb-compat/Config.in"
+ source "package/libv4l/Config.in"
++source "package/maemo-libcal/Config.in"
+ source "package/mtdev/Config.in"
+ source "package/neardal/Config.in"
+ source "package/pcsc-lite/Config.in"
+Index: buildroot-2013.02/package/maemo-libcal/Config.in
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ buildroot-2013.02/package/maemo-libcal/Config.in	2015-03-31 16:22:39.000000000 -0400
+@@ -0,0 +1,13 @@
++config BR2_PACKAGE_MAEMO_LIBCAL
++	bool "maemo-libcal"
++	help
++	  Maemo devices (such as the Nokia N900) have a "calibration" storage
++	  area where various bits of configuration data are kept.  CAL is a
++	  Maemo-specific C API for reading and writing this data.
++
++	  This package installs a free-software reimplementation of this API
++	  from the Community SSU project
++	  (<https://github.com/community-ssu/libcal>)
++
++	  (This is a RescueOS-specific package inserted by patching; see
++	   N900_RescueOS/buildroot-patches/pkg-maemo-libcal.patch)
+Index: buildroot-2013.02/package/maemo-libcal/maemo-libcal.mk
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ buildroot-2013.02/package/maemo-libcal/maemo-libcal.mk	2015-03-31 16:22:39.000000000 -0400
+@@ -0,0 +1,26 @@
++#
++# maemo-libcal
++#
++
++MAEMO_LIBCAL_VERSION = d4c5fd9293ddb693c9b032b4c084cd0343b3ea26
++MAEMO_LIBCAL_SITE = https://github.com/community-ssu/libcal.git
++MAEMO_LIBCAL_SITE_METHOD = git
++MAEMO_LIBCAL_INSTALL_STAGING = YES
++
++define MAEMO_LIBCAL_BUILD_CMDS
++	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) all
++endef
++
++define MAEMO_LIBCAL_INSTALL_STAGING_CMDS
++	$(MAKE) DESTDIR="$(STAGING_DIR)" -C $(@D) install
++endef
++
++define MAEMO_LIBCAL_INSTALL_TARGET_CMDS
++	$(MAKE) DESTDIR="$(TARGET_DIR)" -C $(@D) install
++endef
++
++define MAEMO_LIBCAL_CLEAN_CMDS
++	-$(MAKE) -C $(@D) clean
++endef
++
++$(eval $(generic-package))
+Index: buildroot-2013.02/package/maemo-libcal/maemo-libcal-fix-makefile.patch
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ buildroot-2013.02/package/maemo-libcal/maemo-libcal-fix-makefile.patch	2015-03-31 17:01:15.000000000 -0400
+@@ -0,0 +1,11 @@
++diff -ur libcal.orig/Makefile libcal/Makefile
++--- libcal.orig/Makefile	2015-03-31 16:59:00.000000000 -0400
+++++ libcal/Makefile	2015-03-31 16:59:45.000000000 -0400
++@@ -12,5 +12,5 @@
++ 	install -m 644 cal.h "$(DESTDIR)/usr/include/"
++ 	install -m 644 libcal.pc "$(DESTDIR)/usr/lib/pkgconfig/"
++ 	install -m 755 libcal.so.1.0.0 "$(DESTDIR)/usr/lib/"
++-	ln -s libcal.so.1.0.0 "$(DESTDIR)/usr/lib/libcal.so.1"
++-	ln -s libcal.so.1.0.0 "$(DESTDIR)/usr/lib/libcal.so"
+++	ln -sf libcal.so.1.0.0 "$(DESTDIR)/usr/lib/libcal.so.1"
+++	ln -sf libcal.so.1.0.0 "$(DESTDIR)/usr/lib/libcal.so"

@@ -1,0 +1,6 @@
+gcc46-avoid-segfault.patch
+linux-firmware-version-bump.patch
+linux-firmware-wl1251.patch
+nano-add-syntax-highlighting.patch
+pkg-maemo-libcal.patch
+pkg-maemo-code-reset.patch
