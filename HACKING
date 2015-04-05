@@ -1,0 +1,60 @@
+====================
+RescueOS build HOWTO
+
+  These instructions are for folks who want to modify RescueOS and make their
+  own images.  If you just want to use RescueOS on your N900, you'll want to
+  get one of the prebuilt images and look at 'documentation.txt' for usage
+  info.
+
+RescueOS images are modified buildroot images.  This source distribution is
+just a collection of config files, patches, etc. that configure and customize
+buildroot builds.
+
+You'll need a GNU/Linux system to host the build.  You'll need 'git' and
+'quilt' to checkout the RescueOS source and apply our buildroot patches,
+respectively.  Once that's done, you'll also need to satisfy buildroot's
+prerequisites; we'll address that later.
+
+These files are meant to be used with version 2013.02 of buildroot.  (Ports to
+newer versions are welcome.)
+
+Start by unpacking the RescueOS and buildroot sources into separate
+directories.  We recommend putting the two directories next to each other under
+a common parent directory:
+
+  $ mkdir rescueos-build
+  $ cd rescueos-build
+
+Use git to checkout the RescueOS source.  It will go into a subdirectory named
+'N900_RescueOS'.
+
+  $ git clone <rescueos repository url>
+
+Fetch, verify, and unpack the buildroot source.    It will end up in a
+subdirectory named 'buildroot-2013.02'.
+
+  $ wget http://www.buildroot.org/downloads/buildroot-2013.02.tar.bz2
+  $ wget http://www.buildroot.org/downloads/buildroot-2013.02.tar.bz2.sign
+  $ gpg --recv-keys B025BA8B59C36319
+  $ gpg --verify buildroot-2013.02.tar.bz2.sign
+  $ tar --extract --bzip --file buildroot-2013.02.tar.bz2
+
+Buildroot's prerequisites are documented in the "System requirements" section
+of the buildroot manual ('buildroot-2013.02/docs/manual/manual.html').  Install them if necessary.
+
+Now apply our buildroot patches with quilt.
+
+  $ cd buildroot-2013.02
+  $ QUILT_PATCHES=../N900_RescueOS/buildroot-patches quilt push -a
+
+Point buildroot to the RescueOS configuration:
+
+  $ make defconfig BR2_DEFCONFIG=../N900_RescueOS/buildrootconfig
+
+Invoke buildroot to build RescueOS:
+
+  $ make
+
+Buildroot will download and build a whole bunch of packages, starting with the
+cross-compiling toolchain.  When it's done, kernel and cramfs images will be
+left in 'buildroot-2013.02/output/images'.

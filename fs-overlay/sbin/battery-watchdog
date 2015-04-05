@@ -1,0 +1,28 @@
+#!/bin/sh
+#Modified, we warn only now....
+#fill_charger()
+#{
+#usb=`cat /sys/bus/platform/devices/twl4030_usb/vbus`
+#wall=`cat /sys/bus/platform/devices/musb_hdrc/charger`
+#if [ "$usb" = "on" ] || [ "$wall" = 1 ] ; then
+#charger=1
+#else
+#charger=0 
+#fi
+#}
+while [ true ] ; do
+cap=`cat /sys/class/power_supply/bq27200-0/capacity`
+#fill_charger
+#if [ $cap -le 55 -a $charger -eq 0 ] ; then
+if [ $cap -le 45 ] ; then
+#echo "Attention: Plugin the charger soon to not run out of power. Current: $cap%. To disable this message, type \"stfu\""
+echo "Attention: Charge the battery (by running the charger script) to not run out of power. Current: $cap%. To disable this message, type \"stfu\"" 
+fi
+sleep 20
+done
+
+
+
+
+
+
