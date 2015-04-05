@@ -1,0 +1,42 @@
+Avoid GCC 4.6 segfaults
+
+Buildroot's attempt to build a GCC 4.6.x cross-compilation toolchain might fail
+with something like
+
+/some/path/buildroot-2013.02/output/toolchain/gcc-4.6.3/libgcc/../gcc/libgcc2.c: In function ‘__negdi2’:
+/some/path/buildroot-2013.02/output/toolchain/gcc-4.6.3/libgcc/../gcc/libgcc2.c:72:1: internal compiler error: Segmentation fault
+
+This patch is revision 191605 for GCC 4.7.x
+(<https://gcc.gnu.org/viewcvs/gcc?view=revision&revision=191605>).  Applying it
+to 4.6.x seems to prevent this crash.
+
+Save this file as
+  buildroot-2013.02/toolchain/gcc/4.6.3/999-ira-int.patch
+to have buildroot apply this patch to GCC 4.6.x source before trying to build
+it.
+
+See also <https://gcc.gnu.org/ml/gcc-help/2014-03/msg00049.html>
+
+Index: buildroot-2013.02/toolchain/gcc/4.6.3/999-ira-int.patch
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ buildroot-2013.02/toolchain/gcc/4.6.3/999-ira-int.patch	2015-03-29 00:09:28.000000000 -0400
+@@ -0,0 +1,18 @@
++--- gcc-4_7-branch/gcc/ira-int.h	2012/09/21 09:19:39	191604
+++++ gcc-4_7-branch/gcc/ira-int.h	2012/09/21 10:08:35	191605
++@@ -1138,8 +1138,13 @@
++ ira_allocno_object_iter_cond (ira_allocno_object_iterator *i, ira_allocno_t a,
++ 			      ira_object_t *o)
++ {
++-  *o = ALLOCNO_OBJECT (a, i->n);
++-  return i->n++ < ALLOCNO_NUM_OBJECTS (a);
+++  int n = i->n++;
+++  if (n < ALLOCNO_NUM_OBJECTS (a))
+++    {
+++      *o = ALLOCNO_OBJECT (a, n);
+++      return true;
+++    }
+++  return false;
++ }
++ 
++ /* Loop over all objects associated with allocno A.  In each

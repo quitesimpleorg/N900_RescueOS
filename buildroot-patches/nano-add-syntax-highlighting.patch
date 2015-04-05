@@ -1,0 +1,19 @@
+Index: buildroot-2013.02/package/nano/nano.mk
+===================================================================
+--- buildroot-2013.02.orig/package/nano/nano.mk	2015-03-31 20:35:07.000000000 -0400
++++ buildroot-2013.02/package/nano/nano.mk	2015-03-31 21:29:58.000000000 -0400
+@@ -18,10 +18,14 @@
+ 
+ define NANO_INSTALL_TARGET_CMDS
+ 	$(INSTALL) -m 0755 $(@D)/src/nano $(TARGET_DIR)/usr/bin/nano
++	mkdir -p $(TARGET_DIR)/usr/share/nano
++	$(INSTALL) -t $(TARGET_DIR)/usr/share/nano -m 0644 \
++	           $(@D)/doc/syntax/*.nanorc
+ endef
+ 
+ define NANO_UNINSTALL_TARGET_CMDS
+ 	rm -f $(TARGET_DIR)/usr/bin/nano
++	rm -rf $(TARGET_DIR)/usr/share/nano
+ endef
+ 
+ $(eval $(autotools-package))

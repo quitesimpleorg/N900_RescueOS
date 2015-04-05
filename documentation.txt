@@ -6,6 +6,7 @@ notable:
 
 mounting maemo /
 EMMC access(can mount maemo home and MyDocs partition)
+Lock code reset
 WiFi support
 USB mass-storage mode
 USB networking
@@ -44,9 +45,11 @@ anyway, correct?
 
 -fsck file system checks
 
+-Resetting the lock code (without reflashing)
+
 -and more...
 
-Booting the initrd
+Booting RescueOS
 ~~~~~~~~~~~~~~~
 Note: You can not store persistent data in / as everything happens in RAM. Of
 course, it becomes possible when you mount the EMMC or sd card on the
@@ -55,10 +58,40 @@ corresponding mountpoint.
 Note: It comes without any promises and without any warranty. Therefore you
 are doing everything at your own risk. 
 
-flasher-3.5 -k 2.6.37 -n initrd.img -l -b"rootdelay root=/dev/ram0"
+To load RescueOS onto an N900, you'll need a USB data cable, a PC, and one of
+the following flashers:
 
-wait for "suitable device not found..." and connect the N900 to your 
-Linux box through USB.
+- 0xFFFF - the Open Free Fiasco Firmware Flasher
+  Free/open source, but only runs on GNU/Linux.
+  Packaged for Ubuntu and Debian as '0xffff':
+    http://packages.ubuntu.com/source/0xffff
+    https://packages.debian.org/sid/0xffff
+  Discussion:  http://talk.maemo.org/showthread.php?t=87996
+  Source repo: https://github.com/pali/0xFFFF
+
+- maemo_flasher v3.5 - the original proprietary flasher from Nokia
+  Windows, MacOS, GNU/Linux
+  Official distribution site is gone.  Archive copies at:
+    https://web.archive.org/web/20131117084237/http://skeiron.org/tablets-dev/maemo_dev_env_downloads/
+  Documentation:
+    http://wiki.maemo.org/Documentation/Maemo_5_Developer_Guide/Development_Environment/Maemo_Flasher-3.5
+
+Switch the N900 completely off.  If it is plugged into a charger, a PC, or
+anything else by its USB port, unplug it and wait about 10 seconds to give the
+charger software time to shut down.  Don't connect it to the PC just yet.
+
+Startup the flasher and get it ready to load RescueOS.  For 0xFFFF, the
+incantation is:
+
+  0xFFFF -m kernel:zImage -m initfs:rootfs.cramfs -l -b 'rootdelay root=/dev/ram0'
+
+For maemo_flasher, it's:
+
+  flasher-3.5 -k zImage -n rootfs.cramfs -l -b"rootdelay root=/dev/ram0"
+
+You'll get a message like "suitable device not found...", but the flasher
+should block and wait.  Now connect the N900 to the PC with the data cable; the
+flasher should detect the device, upload RescueOS, launch it, and then exit.
 
 
 ~~~~~~~~~~~~~~~
@@ -76,6 +109,11 @@ Mounting maemo root
 This scripts mounts the maemo root to /mnt/maemo. 
 
 /rescueOS/umount-maemo-root.sh
+
+Lock code reset
+---------------
+code_reset
+# This will set the lock code back to the default ('12345').
 
 USB Networking
 -------------

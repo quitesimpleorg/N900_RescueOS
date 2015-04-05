@@ -1,3 +1,15 @@
+=======================
+1.1-gnoutchd 2015-04-??
+
+NEW	code_reset (can reset the security lock code)
+NEW	cfdisk, pg, setterm, ul
+	(these utilities were left out of previous builds in part because
+	 ncurses was disabled at the time that the util-linux package was built)
+NEW	nano syntax highlighting files updated
+NEW	kernel rebuilt
+REMOVED	depmod, iconv, locale support
+DEVELOP	Kernel and roofs builds now fully automated with buildroot
+
 1.1 2013-06-30
 ==============
 FIX	Correclty detach ubifs (thx, Pali)

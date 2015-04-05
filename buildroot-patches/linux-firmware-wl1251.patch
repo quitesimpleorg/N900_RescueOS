@@ -1,0 +1,33 @@
+Index: buildroot-2013.02/package/linux-firmware/Config.in
+===================================================================
+--- buildroot-2013.02.orig/package/linux-firmware/Config.in	2013-02-28 16:48:28.000000000 -0500
++++ buildroot-2013.02/package/linux-firmware/Config.in	2015-03-29 19:48:36.000000000 -0400
+@@ -71,6 +71,11 @@
+ 	help
+ 	  Realtek 8712
+ 
++config BR2_PACKAGE_LINUX_FIRMWARE_TI_WL1251
++	bool "TI wl1251"
++	help
++	  Firmware files for wl1251 WLAN module
++
+ config BR2_PACKAGE_LINUX_FIRMWARE_TI_WL127X
+ 	bool "TI wl127X"
+ 	help
+Index: buildroot-2013.02/package/linux-firmware/linux-firmware.mk
+===================================================================
+--- buildroot-2013.02.orig/package/linux-firmware/linux-firmware.mk	2015-03-29 19:40:20.000000000 -0400
++++ buildroot-2013.02/package/linux-firmware/linux-firmware.mk	2015-03-29 19:45:47.000000000 -0400
+@@ -57,6 +57,12 @@
+ LINUX_FIRMWARE_FILES_$(BR2_PACKAGE_LINUX_FIRMWARE_MWIFIEX_SD8787) += \
+ 	mrvl/sd8787_uapsta.bin LICENCE.Marvell
+ 
++# wl1251
++LINUX_FIRMWARE_FILES_$(BR2_PACKAGE_LINUX_FIRMWARE_TI_WL1251) += \
++	ti-connectivity/wl1251-fw.bin				\
++	ti-connectivity/wl1251-nvs.bin				\
++	LICENCE.ti-connectivity
++
+ # wl127x
+ LINUX_FIRMWARE_FILES_$(BR2_PACKAGE_LINUX_FIRMWARE_TI_WL127X) += \
+ 	ti-connectivity/wl1271-fw-2.bin				\
