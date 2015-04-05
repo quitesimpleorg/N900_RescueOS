@@ -37,6 +37,7 @@ subdirectory named 'buildroot-2013.02'.
   $ wget http://www.buildroot.org/downloads/buildroot-2013.02.tar.bz2.sign
   $ gpg --recv-keys B025BA8B59C36319
   $ gpg --verify buildroot-2013.02.tar.bz2.sign
+  $ compare the checksums in buildroot-2013.02.tar.bz2.sign with the actual checksums of buildroot-2013.02.tar.bz2 (it's not a detached signature)
   $ tar --extract --bzip --file buildroot-2013.02.tar.bz2
 
 Buildroot's prerequisites are documented in the "System requirements" section
