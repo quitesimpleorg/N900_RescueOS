@@ -1,14 +1,19 @@
-=======================
-1.1-gnoutchd 2015-04-??
+1.2 2015-05-31
+==============
 
-NEW	code_reset (can reset the security lock code)
+NEW	code_reset (can reset the security lock code) (gnoutchd)
 NEW	cfdisk, pg, setterm, ul
 	(these utilities were left out of previous builds in part because
-	 ncurses was disabled at the time that the util-linux package was built)
-NEW	nano syntax highlighting files updated
-NEW	kernel rebuilt
-REMOVED	depmod, iconv, locale support
-DEVELOP	Kernel and roofs builds now fully automated with buildroot
+	 ncurses was disabled at the time that the util-linux package was built) (gnoutchd)
+NEW	nano syntax highlighting files updated (gnoutchd)
+NEW	kernel rebuilt (gnoutchd)
+NEW 	shortcuts so user can type less on the N900 keyboard (NIN101)
+NEW 	improved documentation (gnoutchd, NIN101)
+REMOVED	depmod, iconv, locale support (gnoutchd)
+REMOVED questions during boot (NIN101)
+DEVELOP	Kernel and roofs builds now fully automated with buildroot (gnoutchd)
+
+Special thanks to Daniel Gnoutcheff (gnoutchd) for his contributions! 
 
 1.1 2013-06-30
 ==============
@@ -40,7 +45,7 @@ NEW	Now after bootup, the system asks the user whether he wants to enable anonym
 INFO	it disappeared from the server (some problems with my hoster).
 	Development is pretty much stalled. I am focusing on other things.
 	Contributions otoh are still welcome.
-NEW	Including Pali's script which should fix some messed up maemo /dev/ device nodes (iirc, this can happen with uboot fun)
+NEW	Including Pali's script which should fix some messed up maemo /dev/ device nodes (iirc, this can happen with uboot)
 
 0.5.2 2012-03-03
 ================
