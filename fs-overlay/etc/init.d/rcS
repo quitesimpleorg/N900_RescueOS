@@ -1,6 +1,6 @@
 #!/bin/sh
 EMULATOR=0
-VERSION="1.1"
+VERSION="1.2"
 mount -n -t sysfs none /sys
 mount -n -t proc none /proc
 echo 200 > /sys/class/backlight/acx565akm/brightness
