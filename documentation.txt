@@ -167,11 +167,11 @@ Shortcuts
 ---------
 The following shortcuts are available to avoid unnecessary typing on the N900
 keyboard. 
-mmr -> mount maemo root"
-ummr -> umount maemo root"
-enftp -> enable ftp (anon upload/download everywhere)"
-mse -> enable mass-storage mode"
-msd -> disable mass-storage mode"
+mmr -> mount maemo root
+ummr -> umount maemo root
+enftp -> enable ftp (anon upload/download everywhere)
+mse -> enable mass-storage mode
+msd -> disable mass-storage mode
 usbne -> enable usb networking
 usbnd -> disable usb networking
 chargebat -> start battery charging
