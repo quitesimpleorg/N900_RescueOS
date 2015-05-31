@@ -56,6 +56,10 @@ echo "ummr -> umount maemo root"
 echo "enftp -> enable ftp (anon upload/download everywhere)"
 echo "mse -> enable mass-storage mode"
 echo "msd -> disable mass-storage mode"
+echo "usbne -> enable usb networking"
+echo "usbnd -> disable usb networking"
+echo "chargebat -> start battery charging"
+
 echo "Tab: Shift + Space"
 echo "ESC: Fn (Arrow) + Ctrl"
 echo 
