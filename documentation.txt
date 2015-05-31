@@ -34,8 +34,7 @@ In fact, most users do not need it. Either way, possible use cases:
 -Changing typos in bootscripts which prevent an operation system
 (e.g. maemo) to boot. 
 
--Creating a backup of files before starting a reflash. But should have existed
-anyway, correct? 
+-Creating a backup of files before starting a reflash. 
 
 -Charging the battery (when maemo is dead).
 
@@ -51,9 +50,9 @@ anyway, correct?
 
 Booting RescueOS
 ~~~~~~~~~~~~~~~
-Note: You can not store persistent data in / as everything happens in RAM. Of
-course, it becomes possible when you mount the EMMC or sd card on the
-corresponding mountpoint.  
+Note: You can not store persistent data in /. Of
+course, it becomes possible on the mount points you mount the EMMC or sd card
+to. 
 
 Note: It comes without any promises and without any warranty. Therefore you
 are doing everything at your own risk. 
@@ -132,6 +131,7 @@ Makes the first 2 EMMC partitions available for the mass-storage
 mode. Known as /home/ and /home/user/MyDocs inside maemo.  
 
 /rescueOS/mass-storage-disable.sh: Deactivates mass-storage mode.
+Please unmount on your PC first. 
 
 WiFi support
 ------------
@@ -163,9 +163,23 @@ Root password
 -------------
 rootme
 
-How to transfer files
-=====================
-It asks you on boot whether an FTP Server should be started. 
+Shortcuts
+---------
+The following shortcuts are available to avoid unnecessary typing on the N900
+keyboard. 
+mmr -> mount maemo root"
+ummr -> umount maemo root"
+enftp -> enable ftp (anon upload/download everywhere)"
+mse -> enable mass-storage mode"
+msd -> disable mass-storage mode"
+
+Tab: Shift + Space
+ESC: Fn (Arrow) + Ctrl
+
+
+File transfer
+----------------------
+Enable the FTP server with "enftp". 
 This will have anonymous up and download permissions everywhere.
 Then you can connect to it once USB networking or a WLAN connection 
 has been established, using any FTP client. For downloads, most browsers

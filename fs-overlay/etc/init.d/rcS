@@ -57,7 +57,7 @@ echo "enftp -> enable ftp (anon upload/download everywhere)"
 echo "mse -> enable mass-storage mode"
 echo "msd -> disable mass-storage mode"
 echo "Tab: Shift + Space"
-echo "Escape: Fn (Arrow) + Ctrl"
+echo "ESC: Fn (Arrow) + Ctrl"
 echo 
 echo 
 #node mess 
