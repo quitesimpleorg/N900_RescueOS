@@ -45,28 +45,18 @@ fi
 
 touch /run/resolv.conf
 
-echo "The root password is: rootme" 
+echo "Starting telnetd..."
 
-#Being helpful for beginners, and annoying for "power users"
-echo "Start an FTP server with anonymous up and downloads everywhere? y/n"
-read result;
-if [ "$result" = "y" ] ; then
-tcpsvd -v 0.0.0.0 21 ftpd -w & 
-fi
+echo "Useful information"
+echo "=================="
+echo "The root password is: rootme"
+echo "Shortcuts:"
+echo "mmr -> mount maemo root"
+echo "ummr -> umount maemo root"
+echo "enftp -> enable ftp (anon upload/download everywhere)"
+echo "mse -> enable mass-storage mode"
+echo "msd -> disable mass-storage mode"
 
-echo "Start telnetd? y/n"
-read result;
-
-if [ "$result" = "y" ] ; then
-telnetd 
-fi
-
-echo "Start usb-networking? y/n"
-read result;
-
-if [ "$result" = "y" ] ; then
-/rescueOS/usbnetworking-enable.sh
-fi
 
 #node mess 
 if [ -e /sys/block/mmcblk0 ] && [ -e /sys/block/mmcblk1 ] ; then 
