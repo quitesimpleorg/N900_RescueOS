@@ -1,3 +1,7 @@
+1.3 2016-09-07
+=============
+FIX	telnetd didn't start automatically
+
 1.2 2015-05-31
 ==============
 

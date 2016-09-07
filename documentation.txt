@@ -1,6 +1,6 @@
-Documentation of RescueOS
+Documentation of rescueOS
 =========================
-RescueOS is a rescue solution for the Nokia N900, distributed
+rescueOS is a rescue solution for the Nokia N900, distributed
 as an initrd image. It has several features, most
 notable:
 
@@ -48,7 +48,7 @@ In fact, most users do not need it. Either way, possible use cases:
 
 -and more...
 
-Booting RescueOS
+Booting rescueOS
 ~~~~~~~~~~~~~~~
 Note: You can not store persistent data in /. Of
 course, it becomes possible on the mount points you mount the EMMC or sd card
@@ -57,7 +57,7 @@ to.
 Note: It comes without any promises and without any warranty. Therefore you
 are doing everything at your own risk. 
 
-To load RescueOS onto an N900, you'll need a USB data cable, a PC, and one of
+To load rescueOS onto an N900, you'll need a USB data cable, a PC, and one of
 the following flashers:
 
 - 0xFFFF - the Open Free Fiasco Firmware Flasher
@@ -79,7 +79,7 @@ Switch the N900 completely off.  If it is plugged into a charger, a PC, or
 anything else by its USB port, unplug it and wait about 10 seconds to give the
 charger software time to shut down.  Don't connect it to the PC just yet.
 
-Startup the flasher and get it ready to load RescueOS.  For 0xFFFF, the
+Startup the flasher and get it ready to load rescueOS.  For 0xFFFF, the
 incantation is:
 
   0xFFFF -m kernel:rescueOS_n900_kernel_1.2.zImage -m initfs:rescueOS-1.2.img -l -b 'rootdelay root=/dev/ram0'
@@ -90,7 +90,7 @@ For maemo_flasher, it's:
 
 You'll get a message like "suitable device not found...", but the flasher
 should block and wait.  Now connect the N900 to the PC with the data cable; the
-flasher should detect the device, upload RescueOS, launch it, and then exit.
+flasher should detect the device, upload rescueOS, launch it, and then exit.
 
 
 ~~~~~~~~~~~~~~~
@@ -175,7 +175,8 @@ msd -> disable mass-storage mode
 usbne -> enable usb networking
 usbnd -> disable usb networking
 chargebat -> start battery charging
-
+telnetd -> start telnetd. only necessary if you have closed it explicitly,
+since it starts on boot.
 
 Tab: Shift + Space
 ESC: Fn (Arrow) + Ctrl
@@ -184,11 +185,11 @@ ESC: Fn (Arrow) + Ctrl
 File transfer
 ----------------------
 Enable the FTP server with "enftp". 
-This will have anonymous up and download permissions everywhere.
+It will have anonymous up and download enabled everywhere.
 Then you can connect to it once USB networking or a WLAN connection 
 has been established, using any FTP client. For downloads, most browsers
 can be used. 
 
 Alternatively, use mass-storage mode.
 
-Contributions and suggestions are welcome. Write to me (NIN101 on freenode or TMO. E-Mail: n900-rescueos at quitesimple period org).
+Contributions and suggestions are welcome. Write to me (NIN101 on freenode or TMO. E-Mail: n900-rescueOS at quitesimple period org).

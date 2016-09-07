@@ -1,6 +1,6 @@
 #!/bin/sh
 EMULATOR=0
-VERSION="1.2"
+VERSION="1.3"
 mount -n -t sysfs none /sys
 mount -n -t proc none /proc
 echo 200 > /sys/class/backlight/acx565akm/brightness
@@ -28,7 +28,7 @@ clear
 echo "Disclaimer: This system comes without any warranty. Use it at your own risk."
 sleep 3
 clear
-echo "Welcome to N900 Rescue Initrd $VERSION" 
+echo "Welcome to N900 rescueOS $VERSION" 
 echo
 
 /sbin/loadkmap < /rescueOS/nokia-n900.kmap
@@ -46,6 +46,7 @@ fi
 touch /run/resolv.conf
 
 echo "Starting telnetd..."
+telnetd
 echo 
 echo "Useful information"
 echo "=================="
